@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_jurnalku/dashboard.dart';
 
 class PanduanPenggunaan extends StatefulWidget {
   const PanduanPenggunaan({super.key});
@@ -19,9 +20,9 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
         [
           'Klik pada bagian Pengaturan Akun,',
           'lalu isi field Unggah Photo Profile',
-          'Jika sudah, klik Simpan.'
-        ]
-      ]
+          'Jika sudah, klik Simpan.',
+        ],
+      ],
     },
     {
       'judul': 'Ganti Password',
@@ -33,9 +34,9 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
           'Klik menu Pengaturan Akun,',
           'Pilih opsi Ganti Password,',
           'Masukkan password lama dan password baru,',
-          'Klik Simpan.'
-        ]
-      ]
+          'Klik Simpan.',
+        ],
+      ],
     },
   ];
 
@@ -49,9 +50,9 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
         [
           'Masuk ke menu Jurnal,',
           'Klik tombol Tambah,',
-          'Isi kegiatan yang dilakukan, lalu klik Simpan.'
-        ]
-      ]
+          'Isi kegiatan yang dilakukan, lalu klik Simpan.',
+        ],
+      ],
     },
     {
       'judul': 'Kelengkapan Profile',
@@ -62,9 +63,9 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
         [
           'Buka menu Profil,',
           'Isi semua field yang kosong,',
-          'Klik Simpan untuk menyimpan perubahan.'
-        ]
-      ]
+          'Klik Simpan untuk menyimpan perubahan.',
+        ],
+      ],
     },
     {
       'judul': 'Mengelola Portfolio',
@@ -75,9 +76,9 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
         [
           'Masuk ke menu Portfolio,',
           'Klik Tambah untuk menambahkan data baru,',
-          'Klik Edit untuk mengubah data, atau Hapus untuk menghapus.'
-        ]
-      ]
+          'Klik Edit untuk mengubah data, atau Hapus untuk menghapus.',
+        ],
+      ],
     },
     {
       'judul': 'Mengelola Sertifikat',
@@ -88,9 +89,9 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
         [
           'Masuk ke menu Sertifikat,',
           'Klik Tambah untuk menambah sertifikat baru,',
-          'Klik Edit untuk memperbarui data, atau Hapus untuk menghapus sertifikat.'
-        ]
-      ]
+          'Klik Edit untuk memperbarui data, atau Hapus untuk menghapus sertifikat.',
+        ],
+      ],
     },
     {
       'judul': 'Catatan Sikap Saya',
@@ -101,9 +102,9 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
         [
           'Masuk ke menu Catatan Sikap,',
           'Lihat daftar catatan yang telah diberikan oleh guru,',
-          'Pahami poin-poin perbaikan yang tertera.'
-        ]
-      ]
+          'Pahami poin-poin perbaikan yang tertera.',
+        ],
+      ],
     },
   ];
 
@@ -116,7 +117,15 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            const Icon(Icons.home_outlined, color: Colors.grey),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Dashboard()),
+                );
+              },
+              child: const Icon(Icons.home, color: Colors.grey),
+            ),
             const Spacer(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -136,7 +145,7 @@ class _PanduanPenggunaanState extends State<PanduanPenggunaan> {
               ],
             ),
             const SizedBox(width: 8),
-           const CircleAvatar(
+            const CircleAvatar(
               radius: 18,
               backgroundColor: Colors.grey,
               child: Icon(Icons.person, color: Colors.white),
@@ -230,14 +239,16 @@ class _CardPanduanState extends State<CardPanduan> {
         child: Card(
           elevation: 0,
           margin: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
 
           child: SizedBox(
             height: 80,
             child: ListTile(
-              hoverColor: Colors.transparent, 
+              hoverColor: Colors.transparent,
               focusColor: Colors.transparent,
-              tileColor: Colors.transparent,  
+              tileColor: Colors.transparent,
               minVerticalPadding: 20,
               contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               leading: const Icon(Icons.menu_book, color: Colors.blue),
@@ -250,8 +261,7 @@ class _CardPanduanState extends State<CardPanduan> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        DetailPanduanPage(item: widget.item),
+                    builder: (context) => DetailPanduanPage(item: widget.item),
                   ),
                 );
               },
@@ -262,7 +272,6 @@ class _CardPanduanState extends State<CardPanduan> {
     );
   }
 }
-
 
 class DetailPanduanPage extends StatelessWidget {
   final Map<String, dynamic> item;
@@ -280,10 +289,7 @@ class DetailPanduanPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
         title: const Text(
           'Panduan Penggunaan',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -297,18 +303,20 @@ class DetailPanduanPage extends StatelessWidget {
               const Text(
                 'Panduan Penggunaan',
                 style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
               ),
-              const SizedBox(width: 16) ,
+              const SizedBox(width: 16),
               Expanded(
                 child: Text(
                   item['judul']!,
                   style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -317,18 +325,30 @@ class DetailPanduanPage extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             item['isi'][0],
-            style: const TextStyle(fontSize: 16, color: Colors.black87, height: 1.6),
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.black87,
+              height: 1.6,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             item['isi'][1],
-            style: const TextStyle(fontSize: 16, color: Colors.black87, height: 1.6),
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.black87,
+              height: 1.6,
+            ),
           ),
           const SizedBox(height: 16),
           for (int i = 0; i < isiLangkah.length; i++)
             Text(
               '${i + 1}. ${isiLangkah[i]}',
-              style: const TextStyle(fontSize: 15, color: Colors.black87, height: 1.8),
+              style: const TextStyle(
+                fontSize: 15,
+                color: Colors.black87,
+                height: 1.8,
+              ),
             ),
         ],
       ),
