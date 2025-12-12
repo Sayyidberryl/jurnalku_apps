@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_jurnalku/journal_page.dart';
+import 'package:mobile_jurnalku/progres.dart';
+import 'package:mobile_jurnalku/account_settings.dart';
+import 'package:mobile_jurnalku/witness_request.dart';
+import 'package:mobile_jurnalku/profile_settings.dart';
+import 'package:mobile_jurnalku/panduan_pengguna.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -33,10 +39,147 @@ class Dashboard extends StatelessWidget {
               ],
             ),
             SizedBox(width: 8),
-            CircleAvatar(
-              radius: 18,
-              backgroundColor: Colors.grey,
-              child: Icon(Icons.person, color: Colors.white),
+            PopupMenuButton<String>(
+              padding: EdgeInsets.zero,
+              onSelected: (value) {
+                switch (value) {
+                  case 'dashboard':
+                    // Already on dashboard, do nothing
+                    break;
+                  case 'profile':
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const ProfileSettingsPage(),
+                      ),
+                    );
+                    break;
+                  case 'explore':
+                    // TODO: handle explore
+                    break;
+                  case 'jurnal':
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const JournalPage(),
+                      ),
+                    );
+                    break;
+                  case 'witness':
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const PermintaanSaksiPage(),
+                      ),
+                    );
+                    break;
+                  case 'progress':
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const ProgressBelajarPage(),
+                      ),
+                    );
+                    break;
+                  case 'catatan':
+                    // TODO: handle catatan sikap
+                    break;
+                  case 'panduan':
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const PanduanPenggunaan(),
+                      ),
+                    );
+                    break;
+                  case 'settings':
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const AccountSettingsPage(),
+                      ),
+                    );
+                    break;
+                  case 'logout':
+                    // TODO: handle logout
+                    break;
+                  default:
+                    break;
+                }
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: 'dashboard',
+                  child: ListTile(
+                    leading: const Icon(Icons.home_outlined),
+                    title: const Text('Dashboard'),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'profile',
+                  child: ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text('Profil'),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'explore',
+                  child: ListTile(
+                    leading: const Icon(Icons.explore),
+                    title: const Text('Jelajahi'),
+                  ),
+                ),
+                const PopupMenuDivider(),
+                PopupMenuItem(
+                  value: 'jurnal',
+                  child: ListTile(
+                    leading: const Icon(Icons.menu_book),
+                    title: const Text('Jurnal Pembiasaan'),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'witness',
+                  child: ListTile(
+                    leading: const Icon(Icons.person_search),
+                    title: const Text('Permintaan Saksi'),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'progress',
+                  child: ListTile(
+                    leading: const Icon(Icons.bar_chart),
+                    title: const Text('Progress'),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'catatan',
+                  child: ListTile(
+                    leading: const Icon(Icons.report_gmailerrorred),
+                    title: const Text('Catatan Sikap'),
+                  ),
+                ),
+                const PopupMenuDivider(),
+                PopupMenuItem(
+                  value: 'panduan',
+                  child: ListTile(
+                    leading: const Icon(Icons.book),
+                    title: const Text('Panduan Penggunaan'),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'settings',
+                  child: ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Pengaturan Akun'),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'logout',
+                  child: ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text('Log Out'),
+                  ),
+                ),
+              ],
+              child: CircleAvatar(
+                radius: 18,
+                backgroundColor: Colors.grey,
+                child: Icon(Icons.person, color: Colors.white),
+              ),
             ),
           ],
         ),
